@@ -1,4 +1,6 @@
 {
     "mongoURI" : "mongodb+srv://lalsimte:lalsimte12@devconnector-f1q2r.mongodb.net/test?retryWrites=true&w=majority",
-    "jwtToken" : "mysecrettoken"
+    "jwtToken" : "mysecrettoken",
+    "githubClientId": "0f36829f12cf16956eac",
+    "githubSecret": "4be3f352a50b7c41e922f3e832fb66e811d0c9c3"
 }

@@ -24,7 +24,7 @@ const guestLinks = (
       </ul>
   );
 
-
+  
     return (
         <nav className="navbar bg-dark">
       <h1>

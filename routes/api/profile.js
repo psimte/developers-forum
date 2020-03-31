@@ -6,29 +6,28 @@ const config = require('config');
 const {check, validationResult} = require('express-validator/check')
 const Profile = require('../../models/Profile');
 const User = require('../../models/Users');
+const Post = require('../../models/Post');
 
 //@route GET api/profile/me
 //@desc Get current user profile
 //@accss Private
 
 router.get('/me', auth, async (req, res) => {
-    try {
-        const profile = await Profile
-        .findOne({user: req.user.id})
-        .populate('user',['name', 'avatar']);
+  try {
+    const profile = await Profile.findOne({
+      user: req.user.id
+    });
 
-        if (!profile){
-            res.status(400).json({msg:'There is no profile for this user.'});
-        }
-
-        res.json(profile);
-    }
-    catch(err) {
-        console.log(err.message);
-        res.status(500).send('Server Error!');
+    if (!profile) {
+      return res.status(400).json({ msg: 'There is no profile for this user' });
     }
 
-
+    // only populate from user document if profile exists
+    res.json(profile.populate('user', ['name', 'avatar']));
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
 });
 
 

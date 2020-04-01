@@ -114,18 +114,17 @@ router.post('/',
 
 });
 
-//@route GET api/profiles
-//@desc Get all profiles
-//@accss Public
+// @route    GET api/profile
+// @desc     Get all profiles
+// @access   Public
 router.get('/', async (req, res) => {
-    try {
-        const profiles = await Profile.find().populate('users', ['name', 'avatar']);
-        res.json(profiles);
-    } catch (err) {
-        console.error(err.message);
-        res.status(500).send('Server Error');
-        
-    }
+  try {
+    const profiles = await Profile.find().populate('user', ['name', 'avatar']);
+    res.json(profiles);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
 });
 
 //@route GET api/user/:user_id

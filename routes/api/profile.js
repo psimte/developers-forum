@@ -132,7 +132,9 @@ router.get('/', async (req, res) => {
 //@accss Public
 router.get('/user/:user_id', async (req, res) => {
     try {
-        const profile = await Profile.findOne({user: req.params.user_id}).populate('users', ['name', 'avatar']);
+        const profile = await Profile.findOne({
+            user: req.params.user_id
+        }).populate('user', ['name', 'avatar']);
         
         if(!profile){
             return res.status(400).json({errors: [{msg: 'There is no profile for this user'}] })

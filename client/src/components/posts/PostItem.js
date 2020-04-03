@@ -10,8 +10,8 @@ const PostItem = ({
   removeLike,
   deletePost,
   auth,
-  post: { _id, text, name, avatar, user, likes, comments, date }
- // showActions
+  post: { _id, text, name, avatar, user, likes, comments, date },
+ showActions
 }) => (
   <div className='post bg-white p-1 my-1'>
     <div>
@@ -26,8 +26,9 @@ const PostItem = ({
         Posted on <Moment format='YYYY/MM/DD'>{date}</Moment>
       </p>
 
-      
-          <button
+        {showActions && 
+        <Fragment>
+             <button
             onClick={() => addLike(_id)}
             type='button'
             data-id={_id} 
@@ -57,8 +58,8 @@ const PostItem = ({
             >
               <i className='fas fa-times' />
             </button>
-          )}
-
+          )}  
+        </Fragment>}      
     </div>
   </div>
 );
